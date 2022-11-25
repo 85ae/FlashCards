@@ -2,6 +2,10 @@
 
 A program to manage flashcards.
 
+## **IMPORTANT !!**
+
+This program can't be used now. You must wait until it's usable.
+
 ## Description
 
 This program contains:
