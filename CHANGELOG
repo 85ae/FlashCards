@@ -1,3 +1,5 @@
 11/25/2022: Created the base repository.
 11/25/2022: Added a warning section for the use of this program in the README.md file.
 11/25/2022: Added CHANGELOG file.
+11/25/2022: Created flashcards.flashcard.FlashCard class.
+11/25/2022: Concacenate flashcards.files and flashcards.printing to flashcards.io.
