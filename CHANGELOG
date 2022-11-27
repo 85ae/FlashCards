@@ -3,3 +3,13 @@
 11/25/2022: Added CHANGELOG file.
 11/25/2022: Created flashcards.flashcard.FlashCard class.
 11/25/2022: Concacenate flashcards.files and flashcards.printing to flashcards.io.
+11/27/2022: Create the enum flashcards.io.Printing.
+11/27/2022: Create the flashcards.io.printFlashCard(x: FlashCard, display: Printing) -> (bool | None) function.
+11/27/2022: Create the method flashcards.flashcard.FlashCard.isRightAnswer(answer: str) -> bool.
+11/27/2022: Correct some bugs with the flashcards.flashcard.FlashCard constructors. Now use from_tuple(card: tuple[str, str]) or from_dict(card: dict) instead of __init__(card: tuple) or __init__(card: dict).
+11/27/2022: Updating flashcards.flashcard.FlashCard.ask().
+11/27/2022: Add "__pycache__/" to .gitignore.
+11/27/2022: Add flashcards.flashcard.show() function.
+11/27/2022: Concacenate FlashCard.from_tuple(card) and FlashCard.from_dict(card) to FlashCard.from_card(card: tuple[str, str] | dict).
+11/27/2022: Add flashcards.io.to_html(flashcard: FlashCard, display: Printing) -> str
+11/27/2022: Add code to flashcards.py.

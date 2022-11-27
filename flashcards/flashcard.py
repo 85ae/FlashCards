@@ -1,7 +1,8 @@
 """
 This module defines the FlashCard class.
-This is probably the only module you'll import.
 """
+
+from .io import printFlashCard, Printing
 
 class FlashCard:
     """This class represents a flashcard"""
@@ -11,22 +12,22 @@ class FlashCard:
         self.question = question
         self.answer = answer
 
-    def __init__(self, other: FlashCard):
-        self(other.question, other.answer)
-
-    def __init__(self, card: tuple):
+    def from_card(self, card: tuple[str, str] | dict):
         """
-        Another constructor.
-        @param card must be a tuple under the form ("question", "answer")
+        Construct from a tuple or a dictionary.
+        If using a tuple, it must be under the form ("question", "answer").
+        If you prefer use a dictionary, define two keys: 'question' and 'answer'.
+        @raise An exception if card is not a tuple or a dictionary.
         """
-        (self.question, self.answer) = card
-
-    def __init__(self, card: dict):
-        """
-        Another constructor.
-        @param card must be a dictionary with 2 keys: "question" and "answer".
-        """
-        self(card['question'], card['answer'])
+        if isinstance(card, tuple):
+            (self.question, self.answer) = card # tuple unpackaging
+        elif isinstance(card, dict):
+            if 'question' in card:
+                self. question = card['question']
+            if 'answer' in card:
+                self.answer = card['answer']
+        else:
+            raise Exception("Argument 'card' is not a tuple or a dictionary.")
 
     @property
     def question(self) -> str: # test
@@ -34,7 +35,7 @@ class FlashCard:
         return self._question
 
     @question.setter
-    def question(self, question: str = "Question"):
+    def question(self, question: str):
         """Set the 'question' property"""
         self._question = question
 
@@ -44,19 +45,29 @@ class FlashCard:
         return self._answer
 
     @answer.setter
-    def answer(self, answer: str = "Answer"):
+    def answer(self, answer: str):
         """Set the 'answer' property"""
         self._answer = answer
 
+    def isRightAnswer(self, answer: str) -> bool:
+        return answer.casefold() == self.answer.casefold()
+
     def ask(self) -> bool:
         """Ask to the user what is the corresponding answer to a question"""
-        print(self.question)
-        if input("Your answer :").casefold() == self.answer.casefold():
-            print("All right !")
-            return True
+        result = printFlashCard(self, Printing.ASK_ANSWER)
+        if isinstance(result, bool):
+            return result
+        else:
+            return False
+
+    def show(self):
+        """
+        Show the flashcard to the user.
+        """
+        printFlashCard(self)
 
     def to_str(self) -> str:
-        return "Question: " + self.question + "\nAnswer: " + self.answer
+        return self.question + ":\n" + self.answer
 
     def to_tuple(self) -> tuple:
         """
@@ -67,10 +78,10 @@ class FlashCard:
     def to_dict(self) -> dict:
         """
         Returns a dictionary with 2 keys:
-         - "question"
-         - "answer"
+         - 'question'
+         - 'answer'
         """
         return {
-            "question": self.question,
-            "answer": self.answer
+            'question': self.question,
+            'answer': self.answer
         }
