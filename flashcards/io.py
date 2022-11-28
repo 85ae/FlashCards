@@ -1,6 +1,6 @@
 """
 The io module.
-It includes some functions to print a flashcard.
+It includes some functions to print a flashcard or load from a file.
 """
 
 from enum import Enum, auto
@@ -18,7 +18,7 @@ class Printing(Enum):
 def printFlashCard(flashcard: tuple[str, str], display: Printing = Printing.SHOW_ANSWER):
     """
     Print a flashcard.
-    @param flashcard the flashcard to print. Must be a tuple under the form ("question", "answer").
+    @param flashcard the flashcard to print. Must be a tuple under the form ("question", "answer"). You can obtain this tuple with the method Flashcard.to_tuple().
     @param display the printing method. See flashcard.Printing for more informations.
     If the argument 'display' isn't given or is Printing.SHOW_ANSWER, it doesn't return anything.
     If the argument 'display' is Printing.ASK_ANSWER, it returns True if the answer is correct, False else.
@@ -46,11 +46,11 @@ def printFlashCard(flashcard: tuple[str, str], display: Printing = Printing.SHOW
 def to_html(flashcard: tuple[str, str], display: Printing = Printing.SHOW_ANSWER) -> str:
     """
     Print a flashcard to HTML.
-    @param flashcard the flashcard to print. Must be a tuple under the form ("question", "answer").
+    @param flashcard the flashcard to print. Must be a tuple under the form ("question", "answer"). You can obtain this tuple with the method Flashcard.to_tuple().
     @param display the printing method. See flashcard.Printing for more informations.
     If the argument 'display' isn't given or is Printing.SHOW_ANSWER, it doesn't return anything.
     If the argument 'display' is Printing.ASK_ANSWER, it returns True if the answer is correct, False else.
-    If the argument 'display' isn't correct, it returns also False.
+    If the argument 'display' isn't correct, it raises an exception.
     """
     html = "<html><head><meta charset=\"UTF-8\" /><title>FlashCard</title></head><body><h1>FlashCard</h1><p><div>Question: " + flashcard[0] + "</div><div id=\"answer\">Answer: " + flashcard[1] + "</div>"
     match display:
@@ -65,3 +65,31 @@ def to_html(flashcard: tuple[str, str], display: Printing = Printing.SHOW_ANSWER
         
     html += "</p></body></html>"
     return html
+
+def from_file(path: str) -> tuple[str, str]:
+    """
+    It loads a flashcard from a file and returns a tuple to represent it.
+    You can load it then by using the FlashCard.from_card(card) function.
+    Example: my_flashcard.from_card(from_file("/path/to/my.file"))
+    """
+    line_1 = ""
+    line_2 = ""
+
+    with open(path, "r") as file:
+        line_1 = file.readline()
+        line_2 = file.readline()
+
+    return (line_1, line_2)
+
+def to_file(card: tuple[str, str], path: str):
+    """
+    It loads a flashcard into a file.
+    The 'card' parameter must be a tuple under the form ("question", "answer").
+    You can obtain this tuple with the method Flashcard.to_tuple().
+    """
+    with open(path, "w") as file:
+        if file:
+            file.write(card[0] + '\n')
+            file.write(card[1])
+        else:
+            raise Exception("The file " + path + " can't be opened.")

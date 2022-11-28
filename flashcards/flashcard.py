@@ -54,7 +54,7 @@ class FlashCard:
 
     def ask(self) -> bool:
         """Ask to the user what is the corresponding answer to a question"""
-        result = printFlashCard(self, Printing.ASK_ANSWER)
+        result = printFlashCard(self.to_tuple(), Printing.ASK_ANSWER)
         if isinstance(result, bool):
             return result
         else:
@@ -64,12 +64,15 @@ class FlashCard:
         """
         Show the flashcard to the user.
         """
-        printFlashCard(self)
+        printFlashCard(self.to_tuple())
 
-    def to_str(self) -> str:
+    def __str__(self) -> str:
+        """
+        Return a printable string.
+        """
         return self.question + ":\n" + self.answer
 
-    def to_tuple(self) -> tuple:
+    def to_tuple(self) -> tuple[str, str]:
         """
         Returns a tuple under the form ("question", "answer").
         """

@@ -13,3 +13,8 @@
 11/27/2022: Concacenate FlashCard.from_tuple(card) and FlashCard.from_dict(card) to FlashCard.from_card(card: tuple[str, str] | dict).
 11/27/2022: Add flashcards.io.to_html(flashcard: FlashCard, display: Printing) -> str
 11/27/2022: Add code to flashcards.py.
+11/28/2022: Correct some bugs in flashcards.flashcard module.
+11/28/2022: Add flashcards.manager module.
+11/28/2022: Add flashcards.io.from_file(path: str) function.
+11/28/2022: Add flashcards.io.to_file(card: tuple[str, str], path: str) function.
+11/28/2022: Add flashcards.manager.FlashCardFolder class with constructor.
