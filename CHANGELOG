@@ -18,3 +18,7 @@
 11/28/2022: Add flashcards.io.from_file(path: str) function.
 11/28/2022: Add flashcards.io.to_file(card: tuple[str, str], path: str) function.
 11/28/2022: Add flashcards.manager.FlashCardFolder class with constructor.
+11/30/2022: Add flashcards.manager.FlashCardFolder.load() function.
+11/30/2022: Add flashcards.manager.FlashCardFolder.check() function.
+11/30/2022: Add flashcards.manager.is_between(x: int, inf: int = 0, sup: int = 2) -> bool.
+11/30/2022: Add flashcards.flashcard.FlashCard.last_date: date property.

@@ -3,14 +3,19 @@ This module defines the FlashCard class.
 """
 
 from .io import printFlashCard, Printing
+from datetime import date
 
 class FlashCard:
     """This class represents a flashcard"""
 
-    def __init__(self, question: str = "Question", answer: str = "Answer"):
+    def __init__(self, question: str = "Question", answer: str = "Answer", last_date: date = date.today()):
         """The main constructor."""
         self.question = question
         self.answer = answer
+        if last_date < date.today():
+            self._last_date = last_date
+        else:
+            self._last_date = date.today()
 
     def from_card(self, card: tuple[str, str] | dict):
         """
@@ -48,6 +53,17 @@ class FlashCard:
     def answer(self, answer: str):
         """Set the 'answer' property"""
         self._answer = answer
+
+    @property
+    def last_date(self) -> date: # test
+        """Get the 'date' property"""
+        return self._last_date
+
+    @last_date.setter
+    def last_date(self, last_date: date):
+        """Set the 'date' property"""
+        if last_date < date.today():
+            _last_date = last_date
 
     def isRightAnswer(self, answer: str) -> bool:
         return answer.casefold() == self.answer.casefold()
