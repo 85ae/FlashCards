@@ -22,3 +22,4 @@
 11/30/2022: Add flashcards.manager.FlashCardFolder.check() function.
 11/30/2022: Add flashcards.manager.is_between(x: int, inf: int = 0, sup: int = 2) -> bool.
 11/30/2022: Add flashcards.flashcard.FlashCard.last_date: date property.
+12/14/2023: Move flashcards.py to flashcards.__main__

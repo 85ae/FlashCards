@@ -10,7 +10,7 @@ This program can't be used now. You must wait until it's usable.
 
 This program contains:
  - A package (`flashcards`) that contains the API
- - An executable (`flashcards.py`) to perform some operations on the flashcards.
+ - An executable (`flashcards`) to perform some operations on the flashcards.
 
 ## Use
 
@@ -21,7 +21,7 @@ You can integrate the API in your program.
 
 ### Command-Line Tool
 
-To use the command-line tool `flashcards.py` type `flashcards.py --help` and refer to it.
+To use the command-line tool `flashcards` type `python3 -m flashcards --help` and refer to it.
  > This section will be written soon
 
 ## Building
